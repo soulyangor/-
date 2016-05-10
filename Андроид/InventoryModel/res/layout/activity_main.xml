@@ -1,0 +1,97 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" 
+    android:layout_width="fill_parent" 
+    android:layout_height="fill_parent"
+    android:orientation="vertical"> 
+
+    <LinearLayout android:id="@+id/linearLayout1"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="15dp">      
+         <TextView 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:text="Number of products" 
+            android:layout_marginLeft="25dp" 
+            android:layout_marginRight="25dp"> 
+        </TextView> 
+        <EditText 
+            android:id="@+id/etNumber" 
+            android:layout_width="115dp" 
+            android:layout_height="wrap_content" 
+            android:layout_marginTop="2dp"> 
+        </EditText> 
+     </LinearLayout>
+      
+     <LinearLayout android:id="@+id/linearLayout2"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="15dp">      
+         <TextView 
+            android:layout_width="wrap_content" 
+            android:layout_height="wrap_content" 
+            android:text="Storage size               " 
+            android:layout_marginLeft="25dp" 
+            android:layout_marginRight="25dp"> 
+        </TextView>
+
+         <EditText
+             android:id="@+id/etStorage"
+             android:layout_width="115dp"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="2dp"
+             android:ems="10" >
+
+             <requestFocus />
+         </EditText>
+     </LinearLayout>
+     
+       <LinearLayout
+           android:id="@+id/linearLayoutEps"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="15dp" >
+
+           <TextView
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_marginLeft="25dp"
+               android:layout_marginRight="25dp"
+               android:text="Epsilon                         " >
+           </TextView>
+
+           <EditText
+               android:id="@+id/etEps"
+               android:layout_width="115dp"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="2dp" >
+
+           </EditText>
+       </LinearLayout>
+      
+     <RelativeLayout android:id="@+id/linearLayout3"
+        android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="15dp">
+
+        <Button
+            android:id="@+id/btnOk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:text="Ok" />
+      </RelativeLayout>
+      
+      <LinearLayout android:id="@+id/linearLayoutFin"
+        	android:layout_width="match_parent" 
+        	android:layout_height="wrap_content" 
+        	android:layout_marginTop="25dp">      
+         	<TextView 
+            	android:layout_width="wrap_content" 
+            	android:layout_height="wrap_content" 
+            	android:text="" 
+            	android:layout_marginLeft="25dp" 
+            	android:layout_marginRight="25dp"> 
+        	</TextView> 
+       </LinearLayout>
+</LinearLayout>

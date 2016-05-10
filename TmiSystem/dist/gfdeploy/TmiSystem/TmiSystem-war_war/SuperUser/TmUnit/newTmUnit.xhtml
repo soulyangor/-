@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <h1>Добавление нового оборудования</h1>
+        <h:form>
+            <h:panelGrid columns="2" >
+                <h:outputText value="Имя:"/>
+                <h:inputText id="tmUnit_name"
+                             value="#{tmUnit.name}"/>
+                <h:outputText value="Полное имя:"/>
+                <h:inputText id="tmUnit_fullname"
+                             value="#{tmUnit.fullname}"/>
+                <h:outputText value="Описание:"/>
+                <h:inputText id="tmUnit_description"
+                             value="#{tmUnit.description}"/>
+                <h:outputText value="Тип:"/>
+                <h:selectOneMenu value="#{tmUnit.typeName}">
+                    <f:selectItems value="#{tmUnit.unitTypes}"
+                                   var="ut"
+                                   itemLabel="#{ut.name}"
+                                   itemValue="#{ut.name}"/>
+                </h:selectOneMenu>  
+                <h:message for="tmUnit_name"
+                           styleClass="error-message"/>
+            </h:panelGrid>
+                
+            <h:commandButton value="Создать"
+                             action="#{tmUnit.newTmUnit()}"/>
+            <h:commandButton value="Отмена"
+                             action="#{tmUnit.returnStr()}"
+                             immediate="true"/>
+        </h:form>    
+    </h:body>
+</html>
+
+

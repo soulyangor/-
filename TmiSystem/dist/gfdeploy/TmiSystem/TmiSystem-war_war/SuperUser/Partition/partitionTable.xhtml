@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h:form>
+                <h3>
+                    <h:commandButton value = "Выход"
+                                     action="#{mySession.logout()}"
+                                     style="float: right;"/>
+                    <h:commandButton value = "     ТИПЫ РН     "
+                                     action="/SuperUser/RocketType/rocketTypeTable.xhtml"/>
+                    <h:commandButton value = "ТИПЫ ОБОРУДОВАНИЯ"
+                                     action="/SuperUser/UnitType/unitTypeTable.xhtml"/>
+                    <h:commandButton value = "  ОБОРУДОВАНИЕ   "
+                                     action="/SuperUser/TmUnit/tmUnitTable.xhtml"/>
+                    <h:commandButton value = "АДМИНИСТРИРОВАНИЕ"
+                                     action="/admin.xhtml"/>
+                </h3>
+                <h1>Разделы паспортов радиотелеметрического оборудования</h1>
+                <div style="margin-bottom: 1em;">
+                    <h:commandButton value = "Новый раздел..."
+                                     action="#{partitions.toNewPartition()}"/>
+                    <h:commandButton value = "Удалить разделы"
+                                     action="#{partitions.delete()}"/>
+                </div>
+                <h:dataTable value="#{partitions.partitions}"
+                             var="p"
+                             border="1"
+                             rowClasses="odd-row,even-row"
+                             columnClasses="select-column,name-column">
+                    <h:column headerClass="select-header">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox value="#{p.selected}" />
+                    </h:column>
+                    <h:column headerClass="name-header">
+                        <f:facet name="header">
+                            <h:outputText value="Имя"/>
+                        </f:facet>
+                        <h:commandLink value="#{p.name}"
+                                       action="#{partitions.toEditPartition(p)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Описание"/>
+                        </f:facet>
+                        <h:commandLink value="#{p.description}"
+                                       action="#{partitions.toEditPartition(p)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </rich:panel>
+    </h:body>
+</html>

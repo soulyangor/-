@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h1>Редактирование типа значений</h1>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Имя:"/>
+                    <h:inputText id="valueType_name"
+                                 value="#{valueType.name}"/>
+                    <h:outputText value="Тип:"/>
+                    <h:selectOneMenu value="#{valueType.type}">
+                        <f:selectItem itemValue="число" itemLabel="число"/>
+                        <f:selectItem itemValue="строка" itemLabel="строка"/>
+                        <f:selectItem itemValue="массив" itemLabel="массив"/>
+                        <f:selectItem itemValue="таблица" itemLabel="таблица"/>
+                        <f:selectItem itemValue="дата" itemLabel="дата"/>
+                        <f:selectItem itemValue="текст" itemLabel="текст"/>
+                    </h:selectOneMenu>
+                    <h:outputText value="Размерность:"/>
+                    <h:inputText id="valueType_dimension"
+                                 value="#{valueType.dimension}"/>
+                    <h:outputText value="Описание:"/>
+                    <h:inputText id="valueType_description"
+                                 value="#{valueType.description}"/>
+                    <h:outputText value="Редактируемое:"/> 
+                    <h:selectBooleanCheckbox value="#{valueType.editing}" />
+                    <h:message for="valueType_name"
+                               styleClass="error-message"/>
+                </h:panelGrid>
+                <h:commandButton value="Сохранить"
+                                 action="#{valueType.edit()}"/>
+                <h:commandButton value="Отмена"
+                                 action="valueTypeTable.xhtml?faces-redirect=true"
+                                 immediate="true"/>
+            </h:form> 
+        </rich:panel>
+    </h:body>
+</html>

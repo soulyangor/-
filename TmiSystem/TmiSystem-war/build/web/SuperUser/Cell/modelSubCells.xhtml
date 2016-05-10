@@ -1,0 +1,120 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h:form>
+                <h3>
+                    <h:commandButton value = "Выход"
+                                     action="#{mySession.logout()}"
+                                     style="float: right;"/>
+                    <h:commandButton value = "     ТИПЫ РН     "
+                                     action="/SuperUser/RocketType/rocketTypeTable.xhtml"/>
+                    <h:commandButton value = "ТИПЫ ОБОРУДОВАНИЯ"
+                                     action="/SuperUser/UnitType/unitTypeTable.xhtml"/>
+                    <h:commandButton value = "  ОБОРУДОВАНИЕ   "
+                                     action="/SuperUser/TmUnit/tmUnitTable.xhtml"/>
+                    <h:commandButton value = "АДМИНИСТРИРОВАНИЕ"
+                                     action="/admin.xhtml"/>
+                </h3>
+                <h1>Шаблон модификации, подключения к #{modelSubCells.superCell.name}</h1>
+                <div style="margin-bottom: 1em;">
+                    <h:commandButton value = "Новая ячейка ..."
+                                     action="#{modelSubCells.toNewCell()}"/>
+                    <h:commandButton value = "Удалить ячейки"
+                                     action="#{modelSubCells.delete()}"/>
+                    <h:commandButton value = "Поиск по имени"
+                                     action="#{modelSubCells.find()}"/>
+                    <h:inputText value ="#{modelSubCells.field}"/>
+                </div>
+                <h:dataTable value="#{modelSubCells.cells}"
+                             var="c"
+                             border="1"
+                             rowClasses="odd-row,even-row"
+                             columnClasses="select-column,name-column">
+                    <h:column headerClass="select-header">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox value="#{c.selected}" />
+                    </h:column>
+                    <h:column headerClass="name-header">
+                        <f:facet name="header">
+                            <h:outputText value="Имя"/>
+                        </f:facet>
+                        <h:commandLink value="#{c.name}"
+                                       action="#{modelSubCells.toEditCell(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Описание"/>
+                        </f:facet>
+                        <h:commandLink value="#{c.description}"
+                                       action="#{modelSubCells.toEditCell(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Доступные типы"/>
+                        </f:facet>
+                        <h:dataTable value="#{c.unitTypes}"
+                                     var="ut"
+                                     border="1"
+                                     rowClasses="odd-row,even-row"
+                                     columnClasses="select-column,name-column">
+                            <h:column headerClass="select-header">
+                                <f:facet name="header">
+                                    <h:outputText value=" "/>
+                                </f:facet>
+                                <h:selectBooleanCheckbox value="#{ut.selected}" />
+                            </h:column>
+                            <h:column headerClass="dim-header">
+                                <f:facet name="header">
+                                    <h:outputText value="Имя"/>
+                                </f:facet>
+                                <h:outputText value="#{ut.name}"/>
+                            </h:column>
+                        </h:dataTable>
+                        <h:commandButton value="Добавить"
+                                         action="#{modelSubCells.toAddUnitType(c)}"/>
+                        <h:commandButton value="Удалить"
+                                         action="#{modelSubCells.deleteUnitType(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Каналы"/>
+                        </f:facet>
+                        <h:commandLink value="#{c.channels}"
+                                       action="#{modelSubCells.toEditCell(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Подключения"/>
+                        </f:facet>
+                        <h:commandButton value="Открыть"
+                                         action="#{modelSubCells.toSubCells(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Алгоритм"/>
+                        </f:facet>
+                        <h:commandButton value="Установить"
+                                         action="#{modelSubCells.toAlgorithmTable(c)}"/>
+                    </h:column>
+                </h:dataTable>
+                <h:commandButton value = "Назад"
+                                 action="#{modelSubCells.returnStr()}"/>
+            </h:form>
+        </rich:panel>
+    </h:body>
+</html>

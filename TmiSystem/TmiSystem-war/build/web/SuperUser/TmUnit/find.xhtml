@@ -1,0 +1,178 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h1>Поиск оборудования по полям документа</h1>
+            <h:form id="form_id">
+                <h:panelGrid columns="3">
+                    <h:outputText value="Тип оборудования:"/>
+                    <h:selectOneMenu value="#{find.utName}">
+                        <f:selectItems value="#{find.unitTypes}"
+                                       var="ut"
+                                       itemLabel="#{ut.name}"
+                                       itemValue="#{ut.name}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Выбрать"
+                                     action="#{find.setUt()}"/>
+                    <h:outputText value="Тип значения:"/>
+                    <h:selectOneMenu value="#{find.vtName}"
+                                     rendered="true">
+                        <f:selectItems value="#{find.valueTypes}"
+                                       var="vt"
+                                       itemLabel="#{vt.name}"
+                                       itemValue="#{vt.nameId}"/>
+                    </h:selectOneMenu>
+                    <h:commandButton value="Параметр"
+                                     action="#{find.setP()}"/>
+                </h:panelGrid>
+                <rich:panel rendered="#{find.rendered()}">
+                    <f:facet name="header">
+                        Параметр
+                    </f:facet>
+                    <h:panelGrid columns="2"
+                                 rendered="#{find.renderedString()}">
+                        <h:outputText value="#{find.elem.valueType.name}" />
+                        <h:inputText value="#{find.elem.param}"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2"
+                                 rendered="#{find.renderedDate()}">
+                        <h:outputText value="#{find.elem.valueType.name}" />
+                        <rich:calendar value="#{find.elem.param}"
+                                       locale="RU"
+                                       datePattern="d/MMM/y"/>
+                    </h:panelGrid>
+                    <h:panelGrid columns="4"
+                                 rendered="#{find.renderedMas()}">
+                        <h:outputText value="#{find.elem.valueType.name}" />
+                        <h:inputText value="#{find.elem.x}"
+                                     size="5"/>
+                        <h:commandButton value="+"
+                                         action="#{find.addMassElem()}"/>
+                        <h:commandButton value="-"
+                                         action="#{find.delMassElem()}"/>
+
+                        <h:dataTable value="#{find.elem.table}"
+                                     var="ms"
+                                     border="1"
+                                     rowClasses="odd-row,even-row"
+                                     columnClasses="select-column,name-column">
+                            <h:column headerClass="select-header">
+                                <h:outputText value="#{ms[0]}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGrid>
+                    <h:panelGrid columns="5"
+                                 rendered="#{find.renderedTab()}">
+                        <h:outputText value="#{find.elem.valueType.name}" />
+                        <h:inputText value="#{find.elem.x}"
+                                     size="5"/>
+                        <h:inputText value="#{find.elem.y}"
+                                     size="5"/>
+                        <h:commandButton value="+"
+                                         action="#{find.addRow()}"/>
+                        <h:commandButton value="-"
+                                         action="#{find.delRow()}"/>
+
+                        <h:dataTable value="#{find.elem.table}"
+                                     var="tb"
+                                     border="1"
+                                     rowClasses="odd-row,even-row"
+                                     columnClasses="select-column,name-column">
+                            <h:column headerClass="select-header">
+                                <f:facet name="header">
+                                    <h:outputText value="X"/>
+                                </f:facet>
+                                <h:outputText value="#{tb[0]}" />
+                            </h:column>
+                            <h:column headerClass="select-header">
+                                <f:facet name="header">
+                                    <h:outputText value="Y"/>
+                                </f:facet>
+                                <h:outputText value="#{tb[1]}" />
+                            </h:column>
+                        </h:dataTable>
+                    </h:panelGrid>
+                    <h:panelGrid columns="2"
+                                 rendered="#{find.renderedText()}">
+                        <h:outputText value="#{find.elem.valueType.name}" />
+                        <h:inputTextarea value="#{find.elem.param}"
+                                         rows="3"/>
+                    </h:panelGrid>
+                </rich:panel>
+                <div></div>
+                <h:panelGrid columns="2">
+                    <h:commandButton value="Поиск"
+                                     action="#{find.find()}"/>
+                    <h:commandButton value="Назад"
+                                     action="/SuperUser/TmUnit/tmUnitTable.xhtml?faces-redirect=true"
+                                     immediate="true"/>
+                </h:panelGrid>
+                <div></div>
+                <rich:panel>
+                    <f:facet name="header">
+                        ОБОРУДОВАНИЕ
+                    </f:facet>
+                    <h:dataTable value="#{find.tmUnits}"
+                                 var="tu"
+                                 border="1"
+                                 rowClasses="odd-row,even-row"
+                                 columnClasses="select-column,name-column">
+                        <h:column headerClass="select-header">
+                            <f:facet name="header">
+                                <h:outputText value=" "/>
+                            </f:facet>
+                            <h:selectBooleanCheckbox value="#{tu.selected}" />
+                        </h:column>
+                        <h:column headerClass="name-header">
+                            <f:facet name="header">
+                                <h:outputText value="Имя"/>
+                            </f:facet>
+                            <h:outputText value="#{tu.name}"/>
+                        </h:column>
+                        <h:column headerClass="name-header">
+                            <f:facet name="header">
+                                <h:outputText value="Полное имя"/>
+                            </f:facet>
+                            <h:outputText value="#{tu.fullname}"/>
+                        </h:column>
+                        <h:column headerClass="dim-header">
+                            <f:facet name="header">
+                                <h:outputText value="Описание"/>
+                            </f:facet>
+                            <h:outputText value="#{tu.description}"/>
+                        </h:column>
+                        <h:column headerClass="dim-header">
+                            <f:facet name="header">
+                                <h:outputText value="Тип"/>
+                            </f:facet>
+                            <h:outputText value="#{tu.unitType.name}"/>
+                        </h:column>
+                        <h:column headerClass="dim-header">
+                            <f:facet name="header">
+                                <h:outputText value="Установлен на РН"/>
+                            </f:facet>
+                            <h:outputText value="#{find.rocket(tu)}"/>
+                        </h:column>
+                        <h:column headerClass="dim-header">
+                            <f:facet name="header">
+                                <h:outputText value="Паспорт"/>
+                            </f:facet>
+                            <h:commandButton value="Открыть"
+                                             action="#{find.toRecordList(tu)}"/>
+                        </h:column>
+                    </h:dataTable>
+                </rich:panel>
+            </h:form> 
+        </rich:panel>
+    </h:body>
+</html>

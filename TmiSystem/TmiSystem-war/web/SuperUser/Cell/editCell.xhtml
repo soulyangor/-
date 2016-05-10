@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <h1>Редактирование ячейки</h1>
+        <h:form>
+            <h:panelGrid columns="2" >
+                <h:outputText value="Имя:"/>
+                <h:inputText id="cell_name"
+                             value="#{modelCell.name}"/>
+                <h:outputText value="Описание:"/>
+                <h:inputText id="cell_description"
+                             value="#{modelCell.description}"/> 
+                <h:message for="cell_name"
+                           styleClass="error-message"/>
+            </h:panelGrid>
+                
+            <h:commandButton value="Сохранить"
+                             action="#{modelCell.edit()}"/>
+            <h:commandButton value="Отмена"
+                             action="#{modelCell.returnStr()}"
+                             immediate="true"/>
+        </h:form>    
+    </h:body>
+</html>
+
+

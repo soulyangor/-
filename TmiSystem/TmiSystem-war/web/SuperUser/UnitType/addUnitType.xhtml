@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h1>Добавление уже существующих подтипов оборудования</h1>
+            <h:form>
+                <h:commandButton value="Добавить"
+                                 action="#{unitType.connectUnitTypes()}"/>
+                <h:commandButton value="Отмена"
+                                 action="#{unitType.returnStr()}"
+                                 immediate="true"/>
+                <h:dataTable value="#{unitType.unitTypes}"
+                             var="ut"
+                             border="1"
+                             rowClasses="odd-row,even-row"
+                             columnClasses="select-column,name-column">
+                    <h:column headerClass="select-header">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox value="#{ut.selected}" />
+                    </h:column>
+                    <h:column headerClass="name-header">
+                        <f:facet name="header">
+                            <h:outputText value="Имя"/>
+                        </f:facet>
+                        <h:outputText value="#{ut.name}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Описание"/>
+                        </f:facet>
+                        <h:outputText value="#{ut.description}"/>
+                    </h:column>                   
+                </h:dataTable>
+            </h:form> 
+        </rich:panel>
+    </h:body>
+</html>

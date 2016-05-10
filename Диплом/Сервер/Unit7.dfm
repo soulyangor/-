@@ -1,0 +1,66 @@
+object PasswordDlg: TPasswordDlg
+  Left = 573
+  Top = 265
+  Width = 257
+  Height = 198
+  Caption = #1040#1074#1090#1086#1088#1080#1079#1072#1094#1080#1103
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnCreate = FormCreate
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 64
+    Top = 8
+    Width = 34
+    Height = 13
+    Caption = #1051#1086#1075#1080#1085':'
+  end
+  object Label2: TLabel
+    Left = 64
+    Top = 48
+    Width = 41
+    Height = 13
+    Caption = #1055#1072#1088#1086#1083#1100':'
+  end
+  object Edit1: TEdit
+    Left = 64
+    Top = 24
+    Width = 121
+    Height = 21
+    TabOrder = 0
+    Text = 'Admin'
+  end
+  object Edit2: TEdit
+    Left = 64
+    Top = 64
+    Width = 121
+    Height = 21
+    PasswordChar = '*'
+    TabOrder = 1
+    Text = 'MTO'
+  end
+  object Button1: TButton
+    Left = 40
+    Top = 104
+    Width = 75
+    Height = 25
+    Caption = 'OK'
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object Button2: TButton
+    Left = 120
+    Top = 104
+    Width = 75
+    Height = 25
+    Caption = 'Cancel'
+    TabOrder = 3
+    OnClick = Button2Click
+  end
+end

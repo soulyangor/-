@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h:form>
+                <h3>
+                    <h:commandButton value = "Выход"
+                                     action="#{mySession.logout()}"
+                                     style="float: right;"/>
+                    <h:commandButton value = "     ТИПЫ РН     "
+                                     action="/SuperUser/RocketType/rocketTypeTable.xhtml"/>
+                    <h:commandButton value = "ТИПЫ ОБОРУДОВАНИЯ"
+                                     action="/SuperUser/UnitType/unitTypeTable.xhtml"/>
+                    <h:commandButton value = "  ОБОРУДОВАНИЕ   "
+                                     action="/SuperUser/TmUnit/tmUnitTable.xhtml"/>
+                    <h:commandButton value = "АДМИНИСТРИРОВАНИЕ"
+                                     action="/admin.xhtml"/>
+                </h3>
+                <h1>Шаблон модификации</h1>
+                <div style="margin-bottom: 1em;">
+                    <h:commandButton value = "Назад"
+                                     action="/SuperUser/RocketMod/rocketModTable.xhtml"/>
+                    <h:commandButton value = "Новая ячейка ..."
+                                     action="#{modelCells.toNewCell()}"/>
+                    <h:commandButton value = "Удалить ячейки"
+                                     action="#{modelCells.delete()}"/>
+                </div>
+                <h:dataTable value="#{modelCells.cells}"
+                             var="c"
+                             border="1"
+                             rowClasses="odd-row,even-row"
+                             columnClasses="select-column,name-column">
+                    <h:column headerClass="select-header">
+                        <f:facet name="header">
+                            <h:outputText value=" "/>
+                        </f:facet>
+                        <h:selectBooleanCheckbox value="#{c.selected}" />
+                    </h:column>
+                    <h:column headerClass="name-header">
+                        <f:facet name="header">
+                            <h:outputText value="Имя"/>
+                        </f:facet>
+                        <h:commandLink value="#{c.name}"
+                                       action="#{modelCells.toEditCell(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Описание"/>
+                        </f:facet>
+                        <h:commandLink value="#{c.description}"
+                                       action="#{modelCells.toEditCell(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Доступные типы"/>
+                        </f:facet>
+                        <h:dataTable value="#{c.unitTypes}"
+                                     var="ut"
+                                     border="1"
+                                     rowClasses="odd-row,even-row"
+                                     columnClasses="select-column,name-column">
+                            <h:column headerClass="select-header">
+                                <f:facet name="header">
+                                    <h:outputText value=" "/>
+                                </f:facet>
+                                <h:selectBooleanCheckbox value="#{ut.selected}" />
+                            </h:column>
+                            <h:column headerClass="dim-header">
+                                <f:facet name="header">
+                                    <h:outputText value="Имя"/>
+                                </f:facet>
+                                <h:outputText value="#{ut.name}"/>
+                            </h:column>
+                        </h:dataTable>
+                        <h:commandButton value="Добавить"
+                                         action="#{modelCells.toAddUnitType(c)}"/>
+                        <h:commandButton value="Удалить"
+                                         action="#{modelCells.deleteUnitType(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Подключения"/>
+                        </f:facet>
+                        <h:commandButton value="Открыть"
+                                         action="#{modelCells.toSubCells(c)}"/>
+                    </h:column>
+                    <h:column headerClass="dim-header">
+                        <f:facet name="header">
+                            <h:outputText value="Алгоритм"/>
+                        </f:facet>
+                        <h:commandButton value="Установить"
+                                         action="#{modelSubCells.toAlgorithmTable(c)}"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </rich:panel>
+    </h:body>
+</html>

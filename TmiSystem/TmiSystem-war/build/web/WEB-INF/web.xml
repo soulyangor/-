@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+    <!-- File upload configuration -->
+    <context-param>
+        <param-name>org.richfaces.fileUpload.maxRequestSize</param-name>
+        <param-value>1000000000</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.richfaces.fileUpload.createTempFiles</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <context-param>
+        <param-name>org.richfaces.fileUpload.tempFilesDirectory</param-name>
+        <param-value>f:\\serv\\temp</param-value>
+    </context-param>
+    <context-param>
+        <param-name>com.sun.faces.allowTextChildren</param-name>
+        <param-value>true</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>/faces/*</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>faces/SuperUser/UnitType/unitTypeTable.xhtml</welcome-file>
+    </welcome-file-list>
+    <!-- ADMIN -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Admin Pages</web-resource-name>
+            <url-pattern>/faces/SuperUser/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- MODER -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Engeneer Pages</web-resource-name>
+            <url-pattern>/faces/Engeneer/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>EUSER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <!-- MUSER, USER -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>User Pages</web-resource-name>
+            <url-pattern>/faces/SuperUser/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>EUSER</role-name>
+            <role-name>CUSER</role-name>
+            <role-name>USER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Constructor Pages</web-resource-name>
+            <url-pattern>/faces/Constructor/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>ADMIN</role-name>
+            <role-name>CUSER</role-name>
+        </auth-constraint>
+    </security-constraint>
+    
+    <!-- Authentification method -->
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>myJDBCRealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login.html</form-login-page>
+            <form-error-page>/login.html</form-error-page>
+        </form-login-config>
+    </login-config>
+    
+    <!-- Roles -->
+    <security-role>
+        <role-name>ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <role-name>CUSER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>EUSER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>USER</role-name>
+    </security-role>
+</web-app>

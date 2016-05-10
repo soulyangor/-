@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Добро пожаловать</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <style type="text/css">
+            #centerLayer {
+                margin-top: 15%;
+                margin-left: 40%; /* Отступ слева */
+                width: 40%; /* Ширина слоя */
+                padding: 10px; /* Поля вокруг текста */
+            }
+        </style>
+    </head>
+    <body>
+        <div id="centerLayer">
+            <h3>Вход в систему</h3> 
+            <!-- j_security_check, j_username, j_password должны называться именно так,
+                 через них контейнер получает имя пользователя и пароль, вызывает метод
+                 аутентификации -->
+            <form method="POST" action="j_security_check">
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>Пользователь:</td><td><input type="text" name="j_username"/></td>
+                        </tr>
+                        <tr>
+                            <td>Пароль:</td><td><input type="password" name="j_password"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <input type="submit" value="Войти"/> 
+            </form>
+        </div>
+    </body>
+</html>

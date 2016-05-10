@@ -1,0 +1,78 @@
+%PDF-1.3
+%‚„œ”
+1 0 obj
+<<
+/OpenAction [5 0 R /XYZ null null 1]
+/Outlines 2 0 R
+/Pages 4 0 R
+/Type /Catalog
+>>
+endobj
+2 0 obj
+<<
+/Count 0
+/Type /Outlines
+>>
+endobj
+3 0 obj
+<<
+/Author ()
+/CreationDate (%%DATE_CREATE%%)
+/Creator (%%PRODUCT%% - %%VERSION%%)
+/Keywords ()
+/ModDate (%%DATE_MODIFY%%)
+/Producer (TEC-IT Datenverarbeitung GmbH \(www.tec-it.com\))
+/Subject ()
+/Title (Barcode_only)
+>>
+endobj
+4 0 obj
+<<
+/Count 1
+/Kids [ 5 0 R]
+/Type /Pages
+>>
+endobj
+5 0 obj
+<<
+/Contents 7 0 R
+/MediaBox [ %%SIZE_RECT%% ]
+/Parent 4 0 R
+/Resources 6 0 R
+/Type /Page
+>>
+endobj
+6 0 obj
+<<
+/ColorSpace << /CS0 [ /Pattern /DeviceRGB ] >>
+/ProcSet [/PDF /Text /ImageC] 
+>>
+endobj
+7 0 obj
+<<
+/Length %%LENGTH%%
+>>
+stream
+%%CONTENT%%
+endstream
+endobj
+xref
+0 8
+0000000000 65535 f 
+0000000015 00000 n 
+0000000117 00000 n 
+0000000163 00000 n 
+0000000410 00000 n 
+0000000468 00000 n 
+0000000586 00000 n 
+0000000685 00000 n 
+trailer
+<<
+/Root 1 0 R
+/Info 3 0 R
+/Size 8
+/ID [%%ID%%]
+>>
+startxref
+%%STARTXREF%%
+%%EOF

@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h1>Редактирование типа оборудования</h1>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="Имя:"/>
+                    <h:inputText id="unitType_name"
+                                 value="#{unitType.name}"/>
+                    <h:outputText value="Описание:"/>
+                    <h:inputText id="unitType_description"
+                                 value="#{unitType.description}"/>
+                    <h:message for="unitType_name"
+                               styleClass="error-message"/>
+                </h:panelGrid>
+                <h:commandButton value="Сохранить"
+                                 action="#{unitType.edit()}"/>
+                <h:commandButton value="Отмена"
+                                 action="#{unitType.returnStr()}"
+                                 immediate="true"/>
+            </h:form> 
+        </rich:panel>
+    </h:body>
+</html>

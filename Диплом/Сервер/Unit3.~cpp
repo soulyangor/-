@@ -1,0 +1,236 @@
+//---------------------------------------------------------------------------
+
+#include <vcl.h>
+#pragma hdrstop
+
+#include "Unit3.h"
+#include "Unit1.h"
+#include "Unit2.h"
+#include "Unit4.h"
+#include "Unit5.h"
+#include "Unit6.h"
+//---------------------------------------------------------------------------
+#pragma package(smart_init)
+#pragma resource "*.dfm"
+TForm3 *Form3;
+//---------------------------------------------------------------------------
+__fastcall TForm3::TForm3(TComponent* Owner)
+        : TForm(Owner)
+{
+}
+//---------------------------------------------------------------------------
+void __fastcall TForm3::FormCreate(TObject *Sender)
+{
+
+DBGrid1->DataSource->DataSet->FieldByName("Инвентарный номер")->DisplayWidth=8;
+DBGrid1->DataSource->DataSet->FieldByName("Наименование")->DisplayWidth=10;
+DBGrid1->DataSource->DataSet->FieldByName("Кабинет")->DisplayWidth=8;
+DBGrid1->DataSource->DataSet->FieldByName("Подразделение")->DisplayWidth=10;
+DBGrid1->DataSource->DataSet->FieldByName("РФ/РК")->DisplayWidth=8;
+DBGrid1->DataSource->DataSet->FieldByName("Заводской номер")->DisplayWidth=8;
+DBGrid1->DataSource->DataSet->FieldByName("Документ")->DisplayWidth=10;
+DBGrid1->DataSource->DataSet->FieldByName("Состояние")->DisplayWidth=8;
+
+DBGrid2->DataSource->DataSet->FieldByName("Тип")->DisplayWidth=10;
+DBGrid2->DataSource->DataSet->FieldByName("Наименование")->DisplayWidth=10;
+DBGrid2->DataSource->DataSet->FieldByName("Производитель")->DisplayWidth=10;
+DBGrid2->DataSource->DataSet->FieldByName("Цена за ед")->DisplayWidth=10;
+DBGrid2->DataSource->DataSet->FieldByName("Стоимость")->DisplayWidth=10;
+
+DBGrid3->DataSource->DataSet->FieldByName("Кабинет")->DisplayWidth=10;
+DBGrid3->DataSource->DataSet->FieldByName("ФИО")->DisplayWidth=10;
+DBGrid3->DataSource->DataSet->FieldByName("Подразделение")->DisplayWidth=10;
+DBGrid3->DataSource->DataSet->FieldByName("Должность")->DisplayWidth=10;
+
+DBGrid4->DataSource->DataSet->FieldByName("Код")->DisplayWidth=10;
+DBGrid4->DataSource->DataSet->FieldByName("Документ принятия")->DisplayWidth=10;
+DBGrid4->DataSource->DataSet->FieldByName("Документ списания")->DisplayWidth=10;
+
+DBGrid5->DataSource->DataSet->FieldByName("Тип")->DisplayWidth=10;
+DBGrid5->DataSource->DataSet->FieldByName("Мощность")->DisplayWidth=10;
+DBGrid5->DataSource->DataSet->FieldByName("Ёмкость")->DisplayWidth=10;
+DBGrid5->DataSource->DataSet->FieldByName("Материал")->DisplayWidth=10;
+DBGrid5->DataSource->DataSet->FieldByName("Вес")->DisplayWidth=10;
+
+}
+//---------------------------------------------------------------------------
+
+
+void __fastcall TForm3::Button1Click(TObject *Sender)
+{
+TDateTime CurrentDate = Date();
+ADOQuery3->Active=false;
+    ADOQuery3->SQL->Clear();
+    AnsiString strSQL("SELECT Главная.[Инвентарный номер], Главная.Наименование, Главная.Кабинет, Ответственные.ФИО, Главная.[РФ/РК], Главная.[Заводской номер], Наименование.Стоимость, Главная.[Дата списания], Документация.[Документ списания] FROM Наименование INNER JOIN (Ответственные INNER JOIN (Документация INNER JOIN Главная ON Документация.Код = Главная.Документ) ON Ответственные.Кабинет = Главная.Кабинет) ON Наименование.Наименование = Главная.Наименование WHERE (((Главная.[Дата списания])<:ID));");
+    ADOQuery3->SQL->Text=strSQL;
+    ADOQuery3->Parameters->ParamByName("ID")->Value=CurrentDate;
+    ADOQuery3->Open();
+    ADOQuery3->Active=true;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[0]->DisplayWidth=8;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[1]->DisplayWidth=8;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[2]->DisplayWidth=8;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[3]->DisplayWidth=32;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[4]->DisplayWidth=10;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[5]->DisplayWidth=10;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[6]->DisplayWidth=10;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[7]->DisplayWidth=10;
+    Form4->DBGrid1->DataSource->DataSet->Fields->Fields[8]->DisplayWidth=10;
+    Form4->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button2Click(TObject *Sender)
+{
+    Form5->ADOQuery1->Active=false;
+    Form5->ADOQuery1->SQL->Clear();
+    AnsiString strSQL("SELECT Главная.[Инвентарный номер], Главная.Наименование, Главная.Кабинет, Ответственные.ФИО, Главная.Подразделение, Главная.[Заводской номер], Документация.[Документ принятия], Документация.[Документ списания], Главная.Состояние, Главная.[РФ/РК] FROM Ответственные INNER JOIN (Документация INNER JOIN Главная ON Документация.Код = Главная.Документ) ON Ответственные.Кабинет = Главная.Кабинет WHERE (((Главная.[РФ/РК])=:ID));");
+    Form5->ADOQuery1->SQL->Text=strSQL;
+    Form5->ADOQuery1->Parameters->ParamByName("ID")->Value="RF";
+    Form5->ADOQuery1->Open();
+    Form5->ADOQuery1->Active=true;
+
+    Form5->Label1->Caption="Собственность РФ";
+
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[0]->DisplayWidth=8;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[1]->DisplayWidth=8;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[2]->DisplayWidth=8;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[3]->DisplayWidth=32;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[4]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[5]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[6]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[7]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[8]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[9]->DisplayWidth=10;
+    Form5->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button3Click(TObject *Sender)
+{
+Form5->ADOQuery1->Active=false;
+    Form5->ADOQuery1->SQL->Clear();
+    AnsiString strSQL("SELECT Главная.[Инвентарный номер], Главная.Наименование, Главная.Кабинет, Ответственные.ФИО, Главная.Подразделение, Главная.[Заводской номер], Документация.[Документ принятия], Документация.[Документ списания], Главная.Состояние, Главная.[РФ/РК] FROM Ответственные INNER JOIN (Документация INNER JOIN Главная ON Документация.Код = Главная.Документ) ON Ответственные.Кабинет = Главная.Кабинет WHERE (((Главная.[РФ/РК])=:ID));");
+    Form5->ADOQuery1->SQL->Text=strSQL;
+    Form5->ADOQuery1->Parameters->ParamByName("ID")->Value="RK";
+    Form5->ADOQuery1->Open();
+    Form5->ADOQuery1->Active=true;
+
+    Form5->Label1->Caption="Собственность РК";
+
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[0]->DisplayWidth=8;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[1]->DisplayWidth=8;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[2]->DisplayWidth=8;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[3]->DisplayWidth=32;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[4]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[5]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[6]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[7]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[8]->DisplayWidth=10;
+    Form5->DBGrid1->DataSource->DataSet->Fields->Fields[9]->DisplayWidth=10;
+    Form5->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button4Click(TObject *Sender)
+{
+    Form6->ADOQuery1->Active=false;
+    Form6->ADOQuery1->SQL->Clear();
+    AnsiString strSQL("SELECT Главная.[Инвентарный номер], Главная.Наименование, Главная.Кабинет, Ответственные.ФИО, Главная.Подразделение, Главная.[Заводской номер], Документация.[Документ принятия], Документация.[Документ списания], Главная.Состояние, Главная.[РФ/РК] FROM Ответственные INNER JOIN (Документация INNER JOIN Главная ON Документация.Код = Главная.Документ) ON Ответственные.Кабинет = Главная.Кабинет WHERE (((Главная.Подразделение)=:ID));");
+    Form6->ADOQuery1->SQL->Text=strSQL;
+    Form6->ADOQuery1->Parameters->ParamByName("ID")->Value=Edit1->Text;
+    Form6->ADOQuery1->Open();
+    Form6->ADOQuery1->Active=true;
+
+    Form6->Label1->Caption="По подразделениям";
+
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[0]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[1]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[2]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[3]->DisplayWidth=32;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[4]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[5]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[6]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[7]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[8]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[9]->DisplayWidth=10;
+    Form6->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button5Click(TObject *Sender)
+{
+    Form6->ADOQuery1->Active=false;
+    Form6->ADOQuery1->SQL->Clear();
+    AnsiString strSQL("SELECT Главная.[Инвентарный номер], Главная.Наименование, Главная.Кабинет, Ответственные.ФИО, Главная.Подразделение, Главная.[Заводской номер], Документация.[Документ принятия], Документация.[Документ списания], Главная.Состояние, Главная.[РФ/РК] FROM Ответственные INNER JOIN (Документация INNER JOIN Главная ON Документация.Код = Главная.Документ) ON Ответственные.Кабинет = Главная.Кабинет WHERE (((Главная.Состояние)=:ID));");
+    Form6->ADOQuery1->SQL->Text=strSQL;
+    Form6->ADOQuery1->Parameters->ParamByName("ID")->Value=Edit2->Text;
+    Form6->ADOQuery1->Open();
+    Form6->ADOQuery1->Active=true;
+
+    Form6->Label1->Caption="По состоянию";
+
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[0]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[1]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[2]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[3]->DisplayWidth=32;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[4]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[5]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[6]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[7]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[8]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[9]->DisplayWidth=10;
+    Form6->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button6Click(TObject *Sender)
+{
+    Form6->ADOQuery1->Active=false;
+    Form6->ADOQuery1->SQL->Clear();
+    AnsiString strSQL("SELECT Главная.[Инвентарный номер], Главная.Наименование, Главная.Кабинет, Ответственные.ФИО, Главная.Подразделение, Главная.[Заводской номер], Документация.[Документ принятия], Документация.[Документ списания], Главная.Состояние, Главная.[РФ/РК] FROM Ответственные INNER JOIN (Документация INNER JOIN Главная ON Документация.Код = Главная.Документ) ON Ответственные.Кабинет = Главная.Кабинет WHERE (((Ответственные.ФИО)=:ID));");
+    Form6->ADOQuery1->SQL->Text=strSQL;
+    Form6->ADOQuery1->Parameters->ParamByName("ID")->Value=Edit3->Text;
+    Form6->ADOQuery1->Open();
+    Form6->ADOQuery1->Active=true;
+
+    Form6->Label1->Caption="По ответственному";
+
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[0]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[1]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[2]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[3]->DisplayWidth=32;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[4]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[5]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[6]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[7]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[8]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[9]->DisplayWidth=10;
+    Form6->Show();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm3::Button7Click(TObject *Sender)
+{
+    Form6->ADOQuery1->Active=false;
+    Form6->ADOQuery1->SQL->Clear();
+    AnsiString strSQL("SELECT Главная.[Инвентарный номер], Главная.Наименование, Главная.Кабинет, Ответственные.ФИО, Главная.[РФ/РК], Главная.[Заводской номер], Наименование.Стоимость, Главная.[Дата списания], Документация.[Документ списания] FROM Наименование INNER JOIN (Ответственные INNER JOIN (Документация INNER JOIN Главная ON Документация.Код = Главная.Документ) ON Ответственные.Кабинет = Главная.Кабинет) ON Наименование.Наименование = Главная.Наименование WHERE (((Главная.[Дата списания])<:ID));");
+    Form6->ADOQuery1->SQL->Text=strSQL;
+    Form6->ADOQuery1->Parameters->ParamByName("ID")->Value=Edit4->Text;
+    Form6->ADOQuery1->Open();
+    Form6->ADOQuery1->Active=true;
+
+    Form6->Label1->Caption="К "+Edit4->Text+" нужно списать:";
+
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[0]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[1]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[2]->DisplayWidth=8;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[3]->DisplayWidth=32;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[4]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[5]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[6]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[7]->DisplayWidth=10;
+    Form6->DBGrid1->DataSource->DataSet->Fields->Fields[8]->DisplayWidth=10;
+    Form6->Show();
+}
+//---------------------------------------------------------------------------
+

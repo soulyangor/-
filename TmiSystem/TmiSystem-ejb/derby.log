@@ -1,0 +1,10 @@
+----------------------------------------------------------------
+Thu Jun 04 14:22:34 ALMT 2015:
+ Производится загрузка Derby версии The Apache Software Foundation - Apache Derby - 10.8.1.2 - (1095077): экземпляр a816c00e-014d-bdaa-26a0-000002409bf0
+в каталоге базы данных C:\Users\Sokolov Slava\AppData\Local\Temp\gfembed4626379456656273821tmp\lib\databases\testDB  sun.misc.Launcher$AppClassLoader@1672313 
+
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_40-b43
+user.dir=C:\Users\Sokolov Slava\Documents\NetBeansProjects\TmiSystem\TmiSystem-ejb
+derby.system.home=null
+Запущен загрузчик классов базы данных - derby.database.classpath=''

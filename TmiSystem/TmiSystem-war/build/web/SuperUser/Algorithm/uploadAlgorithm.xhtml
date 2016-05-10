@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <h1>Добавление нового алгоритма</h1>
+        <h:form>
+            <h:panelGrid columns="2" >
+                <h:outputText value="Имя:"/>
+                <h:inputText id="algorithm_name"
+                             value="#{algorithm.name}"/>
+                <h:outputText value="Имя класса:"/>
+                <h:inputText id="algorithm_classname"
+                             value="#{algorithm.className}"/>
+                <h:message for="algorithm_name"
+                           styleClass="error-message"/>
+            </h:panelGrid>
+
+            <rich:fileUpload id="docUploader"
+                             style="height: 100px"
+                             fileUploadListener="#{algorithm.listener}"
+                             maxFilesQuantity="1"
+                             serverErrorLabel="server error"
+                             sizeExceededLabel="size exceed">
+            </rich:fileUpload>
+            <rich:message for="docUploader"/>
+            
+            <h:commandButton value="Загрузить"
+                             action="#{algorithm.persistDoc()}"/>
+            <h:commandButton value="Отмена"
+                             action="algorithmTable.xhtml?faces-redirect=true"
+                             immediate="true"/>
+        </h:form>    
+    </h:body>
+</html>
+
+

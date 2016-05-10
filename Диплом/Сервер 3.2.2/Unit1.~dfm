@@ -1,0 +1,419 @@
+object Form1: TForm1
+  Left = 65
+  Top = 101
+  Width = 1267
+  Height = 578
+  Caption = #1057#1077#1088#1074#1077#1088
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnResize = FormResize
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Label1: TLabel
+    Left = 192
+    Top = 16
+    Width = 146
+    Height = 13
+    Caption = #1048#1085#1092#1086#1088#1084#1072#1094#1080#1103' '#1086' '#1089#1086#1077#1076#1080#1085#1077#1085#1080#1103#1093':'
+  end
+  object Label2: TLabel
+    Left = 24
+    Top = 160
+    Width = 158
+    Height = 13
+    Caption = #1043#1083#1072#1074#1085#1072#1103' '#1090#1072#1073#1083#1080#1094#1072' '#1073#1072#1079#1099' '#1076#1072#1085#1085#1099#1093':'
+  end
+  object Label3: TLabel
+    Left = 544
+    Top = 16
+    Width = 217
+    Height = 13
+    Caption = #1040#1091#1076#1080#1090#1086#1088#1080#1103' '#1075#1076#1077' '#1087#1088#1086#1074#1086#1076#1080#1084' '#1080#1085#1074#1077#1085#1090#1072#1088#1080#1079#1072#1094#1080#1102':'
+    Transparent = True
+  end
+  object Label4: TLabel
+    Left = 544
+    Top = 112
+    Width = 149
+    Height = 13
+    Caption = #1055#1091#1090#1100' '#1082' '#1043#1077#1085#1077#1088#1072#1090#1086#1088#1091' QR-'#1082#1086#1076#1086#1074':'
+  end
+  object Label5: TLabel
+    Left = 960
+    Top = 112
+    Width = 61
+    Height = 13
+    Caption = #1044#1086#1083#1078#1085#1086#1089#1090#1100':'
+  end
+  object Label6: TLabel
+    Left = 1096
+    Top = 112
+    Width = 30
+    Height = 13
+    Caption = #1060#1048#1054':'
+  end
+  object Label7: TLabel
+    Left = 880
+    Top = 112
+    Width = 72
+    Height = 13
+    Caption = #1050#1090#1086' '#1087#1088#1086#1074#1086#1076#1080#1083':'
+  end
+  object Label8: TLabel
+    Left = 544
+    Top = 80
+    Width = 154
+    Height = 13
+    Caption = #1055#1091#1090#1100' '#1082' '#1089#1086#1093#1088#1072#1085#1103#1077#1084#1099#1084' '#1086#1090#1095#1077#1090#1072#1084':'
+  end
+  object Label9: TLabel
+    Left = 968
+    Top = 32
+    Width = 112
+    Height = 13
+    Caption = 'IP-'#1072#1076#1088#1077#1089#1089' '#1091#1089#1090#1088#1086#1081#1089#1090#1074#1072':'
+  end
+  object Label10: TLabel
+    Left = 1104
+    Top = 32
+    Width = 97
+    Height = 13
+    Caption = 'IP-'#1072#1076#1088#1077#1089#1089' '#1089#1077#1088#1074#1077#1088#1072':'
+  end
+  object Button1: TButton
+    Left = 104
+    Top = 32
+    Width = 75
+    Height = 25
+    Caption = #1055#1091#1089#1082
+    TabOrder = 0
+    OnClick = Button1Click
+  end
+  object Memo1: TMemo
+    Left = 192
+    Top = 32
+    Width = 345
+    Height = 89
+    TabOrder = 1
+  end
+  object Button2: TButton
+    Left = 104
+    Top = 64
+    Width = 75
+    Height = 25
+    Caption = #1057#1090#1086#1087
+    TabOrder = 2
+    OnClick = Button2Click
+  end
+  object Button3: TButton
+    Left = 104
+    Top = 96
+    Width = 75
+    Height = 25
+    Caption = #1054#1073#1085#1086#1074#1080#1090#1100
+    TabOrder = 3
+    OnClick = Button3Click
+  end
+  object DBGrid1: TDBGrid
+    Left = 24
+    Top = 176
+    Width = 1201
+    Height = 329
+    DataSource = DataSource1
+    TabOrder = 4
+    TitleFont.Charset = DEFAULT_CHARSET
+    TitleFont.Color = clWindowText
+    TitleFont.Height = -11
+    TitleFont.Name = 'MS Sans Serif'
+    TitleFont.Style = []
+    OnCellClick = DBGrid1CellClick
+    OnColEnter = DBGrid1ColEnter
+    OnDrawColumnCell = DBGrid1DrawColumnCell
+    OnEditButtonClick = DBGrid1EditButtonClick
+    OnEnter = DBGrid1Enter
+    Columns = <
+      item
+        Expanded = False
+        FieldName = #1048#1085#1074#1077#1085#1090#1072#1088#1085#1099#1081' '#1085#1086#1084#1077#1088
+        Width = 128
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+        Width = 128
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1050#1072#1073#1080#1085#1077#1090
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1055#1086#1076#1088#1072#1079#1076#1077#1083#1077#1085#1080#1077
+        Width = 128
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1056#1060'/'#1056#1050
+        Width = 50
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1044#1072#1090#1072' '#1080#1085#1074#1077#1085#1090#1072#1088#1080#1079#1072#1094#1080#1080
+        Width = 128
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1044#1072#1090#1072' '#1089#1087#1080#1089#1072#1085#1080#1103
+        Width = 128
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1044#1072#1090#1072' '#1087#1088#1080#1085#1103#1090#1080#1103
+        Width = 128
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1047#1072#1074#1086#1076#1089#1082#1086#1081' '#1085#1086#1084#1077#1088
+        Width = 128
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1044#1086#1082#1091#1084#1077#1085#1090
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = #1057#1086#1089#1090#1086#1103#1085#1080#1077
+        Width = 128
+        Visible = True
+      end>
+  end
+  object DBNavigator1: TDBNavigator
+    Left = 24
+    Top = 504
+    Width = 1200
+    Height = 25
+    DataSource = DataSource1
+    TabOrder = 5
+    OnClick = DBNavigator1Click
+  end
+  object Button4: TButton
+    Left = 208
+    Top = 128
+    Width = 89
+    Height = 25
+    Caption = #1057#1084#1077#1085#1072' '#1087#1072#1088#1086#1083#1103
+    TabOrder = 6
+    OnClick = Button4Click
+  end
+  object Button5: TButton
+    Left = 312
+    Top = 128
+    Width = 75
+    Height = 25
+    Caption = #1056#1072#1073#1086#1090#1072' '#1089' '#1041#1044
+    TabOrder = 7
+    OnClick = Button5Click
+  end
+  object Button6: TButton
+    Left = 24
+    Top = 32
+    Width = 75
+    Height = 25
+    Caption = #1055#1086#1088#1090
+    TabOrder = 8
+    OnClick = Button6Click
+  end
+  object Edit1: TEdit
+    Left = 24
+    Top = 64
+    Width = 73
+    Height = 21
+    TabOrder = 9
+    Text = '8080'
+  end
+  object Edit2: TEdit
+    Left = 768
+    Top = 16
+    Width = 73
+    Height = 21
+    TabOrder = 10
+  end
+  object Button7: TButton
+    Left = 400
+    Top = 128
+    Width = 139
+    Height = 25
+    Caption = #1057#1075#1077#1085#1077#1088#1080#1088#1086#1074#1072#1090#1100' QR-'#1082#1086#1076
+    TabOrder = 11
+    OnClick = Button7Click
+  end
+  object Edit3: TEdit
+    Left = 544
+    Top = 128
+    Width = 217
+    Height = 21
+    TabOrder = 12
+    Text = 'C:\Users\User1\Desktop\'#1044#1080#1087#1083#1086#1084'\'#1057#1077#1088#1074#1077#1088'\Bin\QRStudio.exe'
+  end
+  object Button8: TButton
+    Left = 768
+    Top = 128
+    Width = 75
+    Height = 25
+    Caption = #1054#1073#1079#1086#1088
+    TabOrder = 13
+    OnClick = Button8Click
+  end
+  object Button9: TButton
+    Left = 544
+    Top = 48
+    Width = 145
+    Height = 25
+    Caption = #1054#1090#1095#1077#1090' "'#1043#1083#1072#1074#1085#1072#1103'"'
+    TabOrder = 14
+    OnClick = Button9Click
+  end
+  object Button10: TButton
+    Left = 696
+    Top = 48
+    Width = 145
+    Height = 25
+    Caption = #1054#1090#1095#1077#1090' "'#1055#1088#1077#1084#1077#1097#1077#1085#1080#1103'"'
+    TabOrder = 15
+    OnClick = Button10Click
+  end
+  object Edit4: TEdit
+    Left = 968
+    Top = 128
+    Width = 121
+    Height = 21
+    TabOrder = 16
+  end
+  object Edit5: TEdit
+    Left = 1104
+    Top = 128
+    Width = 121
+    Height = 21
+    TabOrder = 17
+  end
+  object Edit6: TEdit
+    Left = 704
+    Top = 80
+    Width = 137
+    Height = 21
+    TabOrder = 18
+    Text = 'C:\Users\User1\Desktop\'#1044#1080#1087#1083#1086#1084'\'#1057#1077#1088#1074#1077#1088
+  end
+  object Edit7: TEdit
+    Left = 968
+    Top = 48
+    Width = 121
+    Height = 21
+    TabOrder = 19
+    Text = '192.168.230.101'
+  end
+  object Button11: TButton
+    Left = 968
+    Top = 72
+    Width = 75
+    Height = 25
+    Caption = #1054'k'
+    TabOrder = 20
+    OnClick = Button11Click
+  end
+  object Edit8: TEdit
+    Left = 1104
+    Top = 48
+    Width = 121
+    Height = 21
+    TabOrder = 21
+    Text = '192.168.230.1'
+  end
+  object ServerSocket1: TServerSocket
+    Active = False
+    Port = 8080
+    ServerType = stThreadBlocking
+    ThreadCacheSize = 1
+    OnAccept = ServerSocket1Accept
+    Left = 64
+    Top = 96
+  end
+  object ADOConnection1: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=Microsoft.ACE.OLEDB.12.0;User ID=Admin;Data Source='#1048#1085#1074#1077 +
+      #1085#1090#1072#1088#1080#1079#1072#1094#1080#1103'.accdb;Mode=Share Deny None;Persist Security Info=Fals' +
+      'e;Jet OLEDB:System database="";Jet OLEDB:Registry Path="";Jet OL' +
+      'EDB:Database Password="";Jet OLEDB:Engine Type=6;Jet OLEDB:Datab' +
+      'ase Locking Mode=1;Jet OLEDB:Global Partial Bulk Ops=2;Jet OLEDB' +
+      ':Global Bulk Transactions=1;Jet OLEDB:New Database Password="";J' +
+      'et OLEDB:Create System Database=False;Jet OLEDB:Encrypt Database' +
+      '=False;Jet OLEDB:Don'#39't Copy Locale on Compact=False;Jet OLEDB:Co' +
+      'mpact Without Replica Repair=False;Jet OLEDB:SFP=False;Jet OLEDB' +
+      ':Support Complex Data=False'
+    LoginPrompt = False
+    Mode = cmShareDenyNone
+    Provider = 'Microsoft.ACE.OLEDB.12.0'
+    Top = 192
+  end
+  object DataSource1: TDataSource
+    DataSet = ADOTable1
+    Top = 224
+  end
+  object ADOTable1: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = #1043#1083#1072#1074#1085#1072#1103
+    Top = 256
+  end
+  object ADOTable2: TADOTable
+    Active = True
+    Connection = ADOConnection1
+    CursorType = ctStatic
+    TableName = #1053#1072#1080#1084#1077#1085#1086#1074#1072#1085#1080#1077
+    Left = 504
+    Top = 64
+  end
+  object ADOQuery1: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    Left = 504
+    Top = 96
+  end
+  object OpenDialog1: TOpenDialog
+    Left = 848
+    Top = 128
+  end
+  object Timer1: TTimer
+    OnTimer = Timer1Timer
+    Left = 848
+    Top = 8
+  end
+  object ClientSocket1: TClientSocket
+    Active = False
+    Address = '192.168.230.1'
+    ClientType = ctBlocking
+    Host = '192.168.230.101'
+    Port = 6000
+    Left = 1048
+    Top = 72
+  end
+end

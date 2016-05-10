@@ -1,0 +1,47 @@
+object Form2: TForm2
+  Left = 524
+  Top = 286
+  Width = 315
+  Height = 162
+  Caption = #1057#1084#1077#1085#1072' '#1087#1072#1088#1086#1083#1103
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'MS Sans Serif'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object Edit1: TEdit
+    Left = 48
+    Top = 8
+    Width = 209
+    Height = 21
+    TabOrder = 0
+    Text = #1051#1086#1075#1080#1085
+  end
+  object Edit2: TEdit
+    Left = 48
+    Top = 40
+    Width = 209
+    Height = 21
+    TabOrder = 1
+    Text = #1055#1072#1088#1086#1083#1100
+  end
+  object Button1: TButton
+    Left = 112
+    Top = 80
+    Width = 75
+    Height = 25
+    Caption = #1057#1084#1077#1085#1080#1090#1100
+    TabOrder = 2
+    OnClick = Button1Click
+  end
+  object ADOQuery1: TADOQuery
+    Connection = Form1.ADOConnection1
+    Parameters = <>
+    Left = 8
+    Top = 8
+  end
+end

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout0"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView 
+        android:id="@+id/txtType"
+   		android:layout_width="wrap_content" 
+        android:layout_height="wrap_content" 
+        android:text="product characteristics " 
+        android:textSize="24dp"
+		android:textStyle="bold"
+        android:layout_marginTop="10dp" 
+        android:layout_marginLeft="25dp" 
+        android:layout_marginRight="25dp"> 
+    </TextView> 
+    <LinearLayout 
+    	android:id="@+id/LinearLayout1"
+    	android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="10dp"   
+    	android:orientation="horizontal"> 
+    	<TextView 
+    		android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content" 
+        	android:text="Pull of demand        " 
+        	android:layout_marginLeft="25dp" 
+        	android:layout_marginRight="25dp"> 
+    	</TextView> 
+    	<EditText 
+        	android:id="@+id/edit1" 
+        	android:layout_width="115dp" 
+        	android:layout_height="wrap_content"
+        	android:layout_marginTop="2dp"> 
+    	</EditText> 
+	</LinearLayout>
+	
+	<LinearLayout 
+    	android:id="@+id/LinearLayout2"
+    	android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="10dp"     
+    	android:orientation="horizontal"> 
+    	<TextView 
+    		android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content" 
+        	android:text="Сost of registration" 
+        	android:layout_marginLeft="25dp" 
+        	android:layout_marginRight="25dp"> 
+    	</TextView> 
+    	<EditText 
+        	android:id="@+id/edit2" 
+        	android:layout_width="115dp" 
+        	android:layout_height="wrap_content" 
+        	android:layout_marginTop="2dp"> 
+    	</EditText> 
+	</LinearLayout>
+    
+    <LinearLayout 
+    	android:id="@+id/LinearLayout3"
+    	android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="10dp"   
+    	android:orientation="horizontal"> 
+    	<TextView 
+    		android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content" 
+        	android:text="Storage expenses  " 
+        	android:layout_marginLeft="25dp" 
+        	android:layout_marginRight="25dp"> 
+    	</TextView> 
+    	<EditText 
+        	android:id="@+id/edit3" 
+        	android:layout_width="115dp" 
+        	android:layout_height="wrap_content" 
+        	android:layout_marginTop="2dp"> 
+    	</EditText> 
+	</LinearLayout>
+	
+	<LinearLayout 
+    	android:id="@+id/LinearLayout4"
+    	android:layout_width="match_parent" 
+        android:layout_height="wrap_content" 
+        android:layout_marginTop="10dp"
+    	android:orientation="horizontal"> 
+    	<TextView 
+    		android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content" 
+        	android:text="Area for storage     " 
+        	android:layout_marginLeft="25dp" 
+        	android:layout_marginRight="25dp"> 
+    	</TextView> 
+    	<EditText 
+        	android:id="@+id/edit4" 
+        	android:layout_width="115dp" 
+        	android:layout_height="wrap_content" 
+        	android:layout_marginTop="2dp"> 
+    	</EditText> 
+	</LinearLayout>
+    
+</LinearLayout>

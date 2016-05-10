@@ -1,0 +1,100 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h1>Просмотр паспорта оборудования #{mongo.record.tmUnit.name}</h1>
+            <h:form>
+                <rich:tabPanel>                         
+                    <c:forEach items="#{mongo.partitions}" var="pt">
+                        <rich:tab header="#{pt.name}" >
+                            <c:forEach items="#{mongo.params}" var="p">
+                                <rich:panel rendered="#{mongo.renderedParam( pt, p )}">
+                                    <h:panelGrid columns="4"
+                                                 rendered="#{mongo.renderedString( p )}">
+                                        <h:commandLink value="#{p.valueType.name}" 
+                                                       action="#{mongo.toChange( p )}"/>
+                                        <h:outputText value=":"/>
+                                        <h:outputText value="#{p.param}"/>
+                                        <h:outputText value="#{p.valueType.dimension}"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="3"
+                                                 rendered="#{mongo.renderedDate( p )}">
+                                        <h:commandLink value="#{p.valueType.name}" 
+                                                       action="#{mongo.toChange( p )}"/>
+                                        <h:outputText value=":"/>
+                                        <h:outputText  value="#{p.param}">
+                                            <f:convertDateTime pattern="dd.MM.yyyy" />
+                                        </h:outputText>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"
+                                                 rendered="#{mongo.renderedMas( p )}">
+                                        <h:commandLink value="#{p.valueType.name}" 
+                                                       action="#{mongo.toChange( p )}"/>
+                                        <h:outputText value=":"/>
+                                        <h:dataTable value="#{p.table}"
+                                                     var="ms"
+                                                     border="1"
+                                                     rowClasses="odd-row,even-row"
+                                                     columnClasses="select-column,name-column">
+                                            <h:column headerClass="select-header">
+                                                <h:outputText value="#{ms[0]}" />
+                                            </h:column>
+                                        </h:dataTable>
+                                        <h:outputText value="#{p.valueType.dimension}"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="2"
+                                                 rendered="#{mongo.renderedTab( p )}">
+                                        <h:commandLink value="#{p.valueType.name}" 
+                                                       action="#{mongo.toChange( p )}"/>
+                                        <h:outputText value=":"/>
+                                        <h:dataTable value="#{p.table}"
+                                                     var="tb"
+                                                     border="1"
+                                                     rowClasses="odd-row,even-row"
+                                                     columnClasses="select-column,name-column"
+                                                     rules="">
+                                            <h:column headerClass="select-header">
+                                                <f:facet name="header">
+                                                    <h:outputText value="X"/>
+                                                </f:facet>
+                                                <h:outputText value="#{tb[0]}" />
+                                            </h:column>
+                                            <h:column headerClass="select-header">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Y"/>
+                                                </f:facet>
+                                                <h:outputText value="#{tb[1]}" />
+                                            </h:column>
+                                        </h:dataTable>
+                                        <h:outputText value="#{p.valueType.dimension}"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="3"
+                                                 rendered="#{mongo.renderedText( p )}">
+                                        <h:commandLink value="#{p.valueType.name}" 
+                                                       action="#{mongo.toChange( p )}"/>
+                                        <h:outputText value=":"/>
+                                        <textarea> #{p.param} </textarea>
+                                    </h:panelGrid>
+                                </rich:panel>
+                            </c:forEach>
+                        </rich:tab>
+                    </c:forEach>
+                </rich:tabPanel>
+                <h:commandButton value="Назад"
+                                 action="#{mongo.returnStr()}"/>
+                <h:commandButton value="Удалить"
+                                 action="#{mongo.removeDoc()}"/>
+            </h:form> 
+        </rich:panel>
+    </h:body>
+</html>

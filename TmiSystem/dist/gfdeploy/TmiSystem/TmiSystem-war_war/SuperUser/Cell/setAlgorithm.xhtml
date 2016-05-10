@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <h1>Назначение алгоритма</h1>
+        <h:form>
+            <div style="margin-bottom: 1em;">
+                <h:commandButton value = "Отмена"
+                                 action="#{modelCell.returnStr()}"/>
+            </div>
+            <h:dataTable value="#{modelCell.algorithms}"
+                         var="a"
+                         border="1"
+                         rowClasses="odd-row,even-row"
+                         columnClasses="select-column,name-column">
+                <h:column headerClass="name-header">
+                    <f:facet name="header">
+                        <h:outputText value="Имя"/>
+                    </f:facet>
+                    <h:commandLink value="#{a.name}"
+                                   action="#{modelCell.setAlgorithm(a)}"/>
+                </h:column>
+                <h:column headerClass="dim-header">
+                    <f:facet name="header">
+                        <h:outputText value="Имя класса"/>
+                    </f:facet>
+                    <h:commandLink value="#{a.className}"
+                                   action="#{modelCell.setAlgorithm(a)}"/>
+                </h:column>
+            </h:dataTable>
+        </h:form>    
+    </h:body>
+</html>
+
+

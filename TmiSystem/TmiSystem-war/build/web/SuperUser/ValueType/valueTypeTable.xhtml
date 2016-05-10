@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:rich="http://richfaces.org/rich"
+      xmlns:a4j="http://richfaces.org/a4j"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h:form>
+                <h3>
+                    <h:commandButton value = "Выход"
+                                     action="#{mySession.logout()}"
+                                     style="float: right;"/>
+                    <h:commandButton value = "     ТИПЫ РН     "
+                                     action="/SuperUser/RocketType/rocketTypeTable.xhtml"/>
+                    <h:commandButton value = "ТИПЫ ОБОРУДОВАНИЯ"
+                                     action="/SuperUser/UnitType/unitTypeTable.xhtml"/>
+                    <h:commandButton value = "  ОБОРУДОВАНИЕ   "
+                                     action="/SuperUser/TmUnit/tmUnitTable.xhtml"/>
+                    <h:commandButton value = "АДМИНИСТРИРОВАНИЕ"
+                                     action="/admin.xhtml"/>
+                </h3>
+                <h1>ТИПЫ ЗНАЧЕНИЙ ДЛЯ ТИПА ОБОРУДОВАНИЯ #{valueTypes.unitType.name}</h1>
+                <div style="margin-bottom: 1em;">                    
+                    <h:commandButton value = "Поиск"
+                                     action="#{valueTypes.find()}"/>
+                    <h:inputText value ="#{valueTypes.field}"/>
+                </div>
+                <rich:tabPanel activeItem="#{valueTypes.activePartition.name}">   
+                    <c:forEach items="#{valueTypes.partitions}" var="p">
+                        <rich:tab header="#{p.name}" 
+                                  onclick="#{valueTypes.setPartition(p)}"
+                                  name="#{p.name}">   
+                            <h:commandButton value = "Новый тип..."
+                                             action="#{valueTypes.toNewValueType(p)}"/>
+                            <h:commandButton value = "Удалить типы"
+                                             action="#{valueTypes.delete()}"/>
+                            <h:dataTable value="#{valueTypes.valueTypes}"
+                                         var="vt"
+                                         border="1"
+                                         rowClasses="odd-row,even-row"
+                                         columnClasses="select-column,name-column">
+                                <h:column headerClass="select-header">
+                                    <f:facet name="header">
+                                        <h:outputText value=" "/>
+                                    </f:facet>
+                                    <h:selectBooleanCheckbox value="#{vt.selected}" />
+                                </h:column>
+                                <h:column headerClass="name-header">
+                                    <f:facet name="header">
+                                        <h:outputText value="Имя латиницей"/>
+                                    </f:facet>
+                                    <h:commandLink value="#{vt.nameId}"
+                                                   action="#{valueTypes.toEditValueType(vt)}"/>
+                                </h:column>    
+                                <h:column headerClass="name-header">
+                                    <f:facet name="header">
+                                        <h:outputText value="Имя"/>
+                                    </f:facet>
+                                    <h:commandLink value="#{vt.name}"
+                                                   action="#{valueTypes.toEditValueType(vt)}"/>
+                                </h:column>
+                                <h:column headerClass="name-header">
+                                    <f:facet name="header">
+                                        <h:outputText value="Тип"/>
+                                    </f:facet>
+                                    <h:commandLink value="#{vt.type}"
+                                                   action="#{valueTypes.toEditValueType(vt)}"/>
+                                </h:column>
+                                <h:column headerClass="name-header">
+                                    <f:facet name="header">
+                                        <h:outputText value="Размерность"/>
+                                    </f:facet>
+                                    <h:commandLink value="#{vt.dimension}"
+                                                   action="#{valueTypes.toEditValueType(vt)}"/>
+                                </h:column>
+                                <h:column headerClass="name-header">
+                                    <f:facet name="header">
+                                        <h:outputText value="Описание"/>
+                                    </f:facet>
+                                    <h:commandLink value="#{vt.description}"
+                                                   action="#{valueTypes.toEditValueType(vt)}"/>
+                                </h:column>
+                                <h:column headerClass="select-header">
+                                    <f:facet name="header">
+                                        <h:outputText value="Редактируемое"/>
+                                    </f:facet>
+                                    <h:selectBooleanCheckbox value="#{vt.editing}"
+                                                             disabled="true"/>
+                                </h:column>
+                            </h:dataTable>
+                        </rich:tab>   
+                    </c:forEach>
+                </rich:tabPanel>
+
+            </h:form>
+        </rich:panel>
+    </h:body>
+</html>

@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:rich="http://richfaces.org/rich">
+    <h:head>
+        <title>JPA, EJB, JSF</title>
+        <h:outputStylesheet name="styles.css" library="css"/>
+    </h:head>
+    <h:body>
+        <rich:panel>
+            <f:facet name="header">
+                Информационная система
+            </f:facet>
+            <h1>Создание нового документа для оборудования #{mongo.record.tmUnit.name}</h1>
+            <h:form id="form_id">
+                <rich:tabPanel>                         
+                    <c:forEach items="#{mongo.partitions}" var="pt">
+                        <rich:tab header="#{pt.name}" >
+                            <c:forEach items="#{mongo.elems}" var="e">
+                                <rich:panel rendered="#{mongo.renderedParam( pt, e )}">
+                                    <h:panelGrid columns="3"
+                                                 rendered="#{mongo.renderedString( e )}">
+                                        <h:outputText value="#{e.valueType.name}" />
+                                        <h:outputText value=":"/>
+                                        <h:inputText value="#{e.param}"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="3"
+                                                 rendered="#{mongo.renderedDate( e )}">
+                                        <h:outputText value="#{e.valueType.name}" />
+                                        <h:outputText value=":"/>
+                                        <rich:calendar value="#{e.param}"
+                                                       locale="RU"
+                                                       datePattern="d/MMM/y"/>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="4"
+                                                 rendered="#{mongo.renderedMas( e )}">
+                                        <h:outputText value="#{e.valueType.name}" />
+                                        <h:inputText value="#{e.x}"
+                                                     size="5"/>
+                                        <h:commandButton value="+"
+                                                         action="#{mongo.addMassElem(e)}"/>
+                                        <h:commandButton value="-"
+                                                         action="#{mongo.delMassElem(e)}"/>
+
+                                        <h:dataTable value="#{e.table}"
+                                                     var="ms"
+                                                     border="1"
+                                                     rowClasses="odd-row,even-row"
+                                                     columnClasses="select-column,name-column">
+                                            <h:column headerClass="select-header">
+                                                <h:outputText value="#{ms[0]}" />
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="5"
+                                                 rendered="#{mongo.renderedTab( e )}">
+                                        <h:outputText value="#{e.valueType.name}" />
+                                        <h:inputText value="#{e.x}"
+                                                     size="5"/>
+                                        <h:inputText value="#{e.y}"
+                                                     size="5"/>
+                                        <h:commandButton value="+"
+                                                         action="#{mongo.addRow( e )}"/>
+                                        <h:commandButton value="-"
+                                                         action="#{mongo.delRow( e )}"/>
+
+                                        <h:dataTable value="#{e.table}"
+                                                     var="tb"
+                                                     border="1"
+                                                     rowClasses="odd-row,even-row"
+                                                     columnClasses="select-column,name-column">
+                                            <h:column headerClass="select-header">
+                                                <f:facet name="header">
+                                                    <h:outputText value="X"/>
+                                                </f:facet>
+                                                <h:outputText value="#{tb[0]}" />
+                                            </h:column>
+                                            <h:column headerClass="select-header">
+                                                <f:facet name="header">
+                                                    <h:outputText value="Y"/>
+                                                </f:facet>
+                                                <h:outputText value="#{tb[1]}" />
+                                            </h:column>
+                                        </h:dataTable>
+                                    </h:panelGrid>
+                                    <h:panelGrid columns="3"
+                                                 rendered="#{mongo.renderedText( e )}">
+                                        <h:outputText value="#{e.valueType.name}" />
+                                        <h:outputText value=":"/>
+                                        <h:inputTextarea value="#{e.param}"
+                                                         rows="3"/>
+                                    </h:panelGrid>
+                                </rich:panel>
+                            </c:forEach>
+                        </rich:tab>
+                    </c:forEach>
+                </rich:tabPanel>
+                <h:commandButton value="Создать"
+                                 action="#{mongo.newDoc()}"/>
+                <h:commandButton value="Отмена"
+                                 action="#{mongo.returnStr()}"
+                                 immediate="true"/>
+            </h:form> 
+        </rich:panel>
+    </h:body>
+</html>
